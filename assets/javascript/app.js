@@ -36,8 +36,12 @@ $(document).ready(function () {
             url: queryURL,
             method: "GET"
         }).then(function (response) {
-            triviaQuestionsArray = response;
-            renderQuestion();
+            if (response.response_code === 0) {
+                triviaQuestionsArray = response;
+                renderQuestion();
+            } else {
+                renderFailedRequest(response.response_code);
+            }
         });
     });
 
@@ -58,7 +62,7 @@ function renderQuestion() {
 
     var counter = 29;
     timer_id = setInterval(function () { $('#remaining-time').text('Time Remaining: ' + counter-- + ' seconds'); }, 1000);
-    time_question_id = setTimeout(outOfTime,30000);
+    time_question_id = setTimeout(outOfTime, 30000);
 
     $('#image-tag').attr("src", "assets/images/loading.gif");
 
@@ -80,7 +84,7 @@ function renderQuestion() {
         }
     }
 
-    
+
 }
 
 function renderQuestionResult(selected) {
@@ -100,11 +104,17 @@ function renderQuestionResult(selected) {
     }
 
     questionIndex++;
-    setTimeout(renderQuestion, 8000);
+    setTimeout(renderQuestion, 6000);
 }
 
 function renderGameStats() {
     showStatsTab();
+
+    $('#number-correct').css('visibility','visible');
+    $('#number-incorrect').css('visibility','visible');
+    $('#number-unanswered').css('visibility','visible');
+
+    $('#main-message').text('Game Over, see how you did!')
     $('#number-correct').text('Correct answers: ' + correctAnswers);
     $('#number-incorrect').text('Incorrect answers: ' + incorrectAnswers);
     $('#number-unanswered').text('Unanswered answers: ' + unansweredAnswers);
@@ -114,6 +124,32 @@ function renderGameStats() {
 function renderNewGame() {
     showOptionsTab();
     resetVariables();
+}
+
+function renderFailedRequest(codeValue) {
+    showStatsTab();
+
+    $('#number-correct').css('visibility','hidden');
+    $('#number-incorrect').css('visibility','hidden');
+    $('#number-unanswered').css('visibility','hidden');
+
+    switch (codeValue) {
+        case 1:
+            $('#main-message').text('The API does not have enough questions for your query.');
+            break;
+        case 2:
+            $('#main-message').text('Arguements passed in are not valid.');
+            break;
+        case 3:
+            $('#main-message').text('Session Token does not exist.');
+            break;
+        case 4:
+            $('#main-message').text('Session Token has returned all possible questions for the specified query. Resetting the Token is necessary.');
+            break;
+        default:
+            $('#main-message').text('An error has ocurred while retrieving your request, please try again later');
+            break;
+    }
 }
 
 function renderImage() {
@@ -131,13 +167,13 @@ function renderImage() {
 
 }
 
-function outOfTime(){
+function outOfTime() {
     clearInterval(timer_id);
     showResultsTab();
     $('#select-result').text("Out of Time!");
     $('#correct-answer').html("The correct answer was: " + getCorrectAnswer());
     $('#correct-answer').show();
-    
+
     unansweredAnswers++;
     questionIndex++;
     setTimeout(renderQuestion, 5000);
@@ -196,7 +232,7 @@ function shuffle(array) {
 }
 
 function showOptionsTab() {
-    $('#options-selector').show();
+    $('#options-selector').fadeIn('slow');
     $('#question-selector').hide();
     $('#question-results').hide();
     $('#game-results').hide();
@@ -209,7 +245,7 @@ function showOptionsTab() {
 
 function showQuestionsTab() {
     $('#options-selector').hide();
-    $('#question-selector').show();
+    $('#question-selector').fadeIn('slow');
     $('#question-results').hide();
     $('#game-results').hide();
 }
@@ -217,7 +253,7 @@ function showQuestionsTab() {
 function showResultsTab() {
     $('#options-selector').hide();
     $('#question-selector').hide();
-    $('#question-results').show();
+    $('#question-results').fadeIn('slow');
     $('#game-results').hide();
 
     //Render the image
@@ -228,7 +264,7 @@ function showStatsTab() {
     $('#options-selector').hide();
     $('#question-selector').hide();
     $('#question-results').hide();
-    $('#game-results').show();
+    $('#game-results').fadeIn('slow');
 }
 
 function resetVariables() {
