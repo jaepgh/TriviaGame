@@ -18,7 +18,7 @@
 
 <body>
     <div class="container">
-        <div class="jumbotron" id="options-selector">
+        <div class="jumbotron col-md-6 col-sm-10 mx-auto" id="options-selector">
             <h2 class="form-signin-heading">Welcome to Trivia Night!</h2>
             <p>Please select your options and press the start button to begin. Good luck and have fun!</p>
 
@@ -72,34 +72,40 @@
             <button class="btn btn-lg btn-primary btn-block" id="startButton">START</button>
         </div>
 
-        <div class="jumbotron" id="question-selector">
+        <div class="jumbotron col-md-6 col-sm-10" id="question-selector" style="display: none">
 
-            <p id="remaining-time" class="text-center"> Time Remaining: 15 seconds</p>
+            <p id="remaining-time" class="text-center"> Time Remaining: 30 seconds</p>
 
-            <label for="options-items">What is .....? </label>
+            <label for="options-items" id="current-question">What is .....? </label>
 
             <div class="list-group" id="options-items">
-                <p class="list-group-item list-group-item-action flex-column align-items-start">
+                <p class="list-group-item list-group-item-action flex-column align-items-start posible-options" id="option0">
                     Option #1
                 </p>
-                <p class="list-group-item list-group-item-action flex-column align-items-start">
+                <p class="list-group-item list-group-item-action flex-column align-items-start posible-options" id="option1">
                     Option #2
                 </p>
-                <p class="list-group-item list-group-item-action flex-column align-items-start">
+                <p class="list-group-item list-group-item-action flex-column align-items-start posible-options" id="option2">
                     Option #3
                 </p>
-                <p class="list-group-item list-group-item-action flex-column align-items-start">
+                <p class="list-group-item list-group-item-action flex-column align-items-start posible-options" id="option3">
                     Option #4
                 </p>
             </div>
         </div>
-        
-        <div class="jumbotron" id="game-results">
 
+        <div class="jumbotron col-md-6 col-sm-10" id="question-results" style="display: none">
+            <h4 class="text-center" id="select-result">Correct/Incorrect/Out of time</h4>
+            <p class="text-center" id="correct-answer">The correct answer was: </p>
+            <img src="http://via.placeholder.com/350x350" alt="" id="image-tag" class="rounded mx-auto d-block">
         </div>
 
-        <div class="jumbotron" id="game-results">
-
+        <div class="jumbotron col-md-6 col-sm-10" id="game-results" style="display: none">
+            <h4 class="text-center">Game Over, see how you did!</h4>
+            <p class="text-center" id="number-correct">Correct answers: </p>
+            <p class="text-center" id="number-incorrect">Incorrect answers: </p>
+            <p class="text-center" id="number-unanswered">Unanswered answers: </p>
+            <button class="btn btn-lg btn-primary btn-block" id="start-over">START OVER?</button>
         </div>
     </div>
 
