@@ -16,7 +16,7 @@ Did you know that Paul McCartney has always used his middle name? Or In what yea
 
 ### Technologies/Languages used:
 
-- HTML, CSS, , Bootstrap 4, Javascript, jQuery, Ajax and APIs
+- HTML, CSS, Bootstrap 4, Javascript, jQuery, Ajax and APIs
 
 ### Final Screen Shots:
 
