@@ -34,6 +34,6 @@ Did you know that Paul McCartney has always used his middle name? Or In what yea
 
 
 
-#### Copyright
+<p align="center"> <b>Copyright</b></p>
 
 Jose A Esquivel (@jaepgh)(C) 2018. All Rights Reserved.
