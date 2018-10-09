@@ -20,9 +20,6 @@ Did you know that Paul McCartney has always used his middle name? Or In what yea
 
 ### Final Screen Shots:
 
-![Trivia Night](/images/logo.png)
-Format: ![Alt Text](url)
-
 <p align="center">
   <img src="https://github.com/jaepgh/TriviaGame/blob/master/assets/images/main-page.png" alt="Trivia Night"/>
 </p>
